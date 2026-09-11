@@ -9,7 +9,7 @@ import { SITE } from '@/lib/site';
 export const metadata = {
   title: 'About Us',
   description:
-    'For over 35 years, VS Electricals has powered Indian homes with safe, energy-efficient and certified electrical products.',
+    'For over 80 years, VS Electricals has powered Indian homes with safe, energy-efficient and certified electrical products.',
 };
 
 const VALUES = [
@@ -53,7 +53,7 @@ export default function AboutPage() {
           </h1>
           <p className="mt-5 text-lg text-white/70">
             What began as a small switchgear workshop is today a trusted name in fans, lighting,
-            wiring and appliances — chosen by over 5 lakh homes and 800+ dealers across India.
+            wiring and appliances — chosen by over 10 lakh homes and 800+ dealers across India.
           </p>
         </div>
       </section>

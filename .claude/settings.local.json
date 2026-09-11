@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(command -v node)",
+      "Bash(where node *)",
+      "Bash(npm -v)",
+      "Bash(echo \"=== Program Files ===\"; ls \"/c/Program Files/nodejs/\" 2>/dev/null | head; echo \"=== Program Files x86 ===\"; ls \"/c/Program Files \\(x86\\)/nodejs/\" 2>/dev/null | head; echo \"=== AppData nvm ===\"; ls \"/c/Users/dives/AppData/Roaming/nvm/\" 2>/dev/null | head; echo \"=== nvm4w ===\"; ls \"/c/nvm4w/\" 2>/dev/null | head; echo \"=== fnm ===\"; ls \"/c/Users/dives/AppData/Roaming/fnm/\" 2>/dev/null | head; echo \"=== volta ===\"; ls \"/c/Users/dives/.volta/bin/\" 2>/dev/null | head; echo \"=== local AppData Programs ===\"; ls \"/c/Users/dives/AppData/Local/Programs/\" 2>/dev/null | head)",
+      "Bash(cmd.exe /c \"echo %PATH%\")",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(cd \"C:/Users/dives/OneDrive/Desktop/Store\" && ls node_modules/next/dist/bin/next && ls \"/d/Node jss/node.exe\")",
+      "WebFetch(domain:dritm.com)"
+    ]
+  }
+}

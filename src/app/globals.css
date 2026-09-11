@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --swiper-theme-color: #ffb800;
+    --swiper-pagination-bullet-inactive-color: #ffffff;
+    --swiper-pagination-bullet-inactive-opacity: 0.5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-brand-900 antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-heading tracking-tight text-brand-900;
+  }
+
+  ::selection {
+    @apply bg-accent-400/40 text-brand-950;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-50;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-brand-300;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-400;
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
+      transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400
+      focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-brand-900 text-white shadow-card hover:bg-brand-800 hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+  .btn-accent {
+    @apply bg-accent-400 text-brand-950 shadow-card hover:bg-accent-300 hover:shadow-glow hover:-translate-y-0.5;
+  }
+  .btn-outline {
+    @apply border-2 border-brand-200 bg-white/70 text-brand-800 backdrop-blur hover:border-brand-900 hover:bg-white;
+  }
+  .btn-ghost {
+    @apply text-brand-700 hover:bg-brand-50;
+  }
+  .btn-white {
+    @apply bg-white text-brand-900 shadow-card hover:-translate-y-0.5 hover:shadow-card-hover;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .card {
+    @apply rounded-2xl border border-brand-100 bg-white shadow-card transition-all duration-300;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-brand-200 bg-white px-4 py-3 text-sm text-brand-900 shadow-sm
+      outline-none transition placeholder:text-brand-300
+      focus:border-accent-400 focus:ring-4 focus:ring-accent-400/20;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-brand-700;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-400 via-accent-300 to-accent-500 bg-clip-text text-transparent;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-accent-400/30 bg-accent-50 px-3 py-1
+      text-xs font-semibold uppercase tracking-wider text-accent-700;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-accent-400
+      after:transition-all after:duration-300 hover:after:w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent);
+    mask-image: linear-gradient(90deg, #000 80%, transparent);
+  }
+  .bg-grid {
+    background-size: 32px 32px;
+  }
+}
+
+/* AOS: honor reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-float,
+  .animate-spin-slow,
+  .animate-marquee,
+  .animate-gradient-x {
+    animation: none !important;
+  }
+}
+
+/* Swiper: give the hero pagination a little breathing room */
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+}
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev {
+  color: #fff;
+}
+
+/* Before Swiper initializes, keep only the first slide visible (no stacking flash) */
+.hero-swiper:not(.swiper-initialized) .swiper-slide {
+  position: absolute;
+  inset: 0;
+}
+.hero-swiper:not(.swiper-initialized) .swiper-slide:not(:first-child) {
+  opacity: 0;
+}

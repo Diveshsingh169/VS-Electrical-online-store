@@ -3,6 +3,18 @@ import mysql from 'mysql2/promise';
 // Reuse a single pool across hot-reloads / requests (module singleton).
 let pool = globalThis.__vsePool;
 
+function getSslConfig() {
+  // Aiven requires TLS. In production, paste its CA certificate into the
+  // DB_SSL_CA environment variable (Vercel accepts multiline secret values).
+  // Vercel can also store newlines as literal "\\n", so normalize them here.
+  const ca = process.env.DB_SSL_CA?.replaceAll("\\n", "\n");
+  const rejectUnauthorized = process.env.DB_SSL_REJECT_UNAUTHORIZED !== "false";
+
+  if (!process.env.DB_HOST || process.env.DB_SSL === "false") return undefined;
+
+  return ca ? { ca, rejectUnauthorized } : { rejectUnauthorized };
+}
+
 export function getPool() {
   if (!pool) {
     pool = mysql.createPool({
@@ -12,7 +24,7 @@ export function getPool() {
       password: process.env.DB_PASSWORD || "",
       database: process.env.DB_NAME || "vs_electricals",
 
-      ssl: process.env.DB_HOST ? { rejectUnauthorized: true } : undefined,
+      ssl: getSslConfig(),
       waitForConnections: true,
       connectionLimit: 10,
       queueLimit: 0,
